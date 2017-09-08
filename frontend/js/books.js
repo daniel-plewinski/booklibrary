@@ -29,7 +29,7 @@ $(document).ready(function(){
     });
 
 
-    // editing a book part 1
+    // editing a book
     $('#bookEditSelect').on('change', function(e) {
         var bookID = $(this).val();
         $('#bookEdit').show();
