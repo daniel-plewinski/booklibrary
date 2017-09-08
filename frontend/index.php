@@ -29,10 +29,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="?action=books">Books</a></li>
-<<<<<<< HEAD
-=======
+
                 <li><a href="?action=authors">Authors</a></li>
->>>>>>> api_v2
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -60,13 +58,9 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<<<<<<< HEAD
 <script>
     const API_HOST = "../rest/rest.php";
 </script>
-=======
-
->>>>>>> api_v2
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/scripts.js"></script>

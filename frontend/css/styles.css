@@ -34,11 +34,7 @@
     margin-left : 20px;
 }
 
- /*HEAD*/
 #bookEdit {
-/*=======*/
-#bookEdit, #authorEdit {
-/*>>>>>>> api_v2*/
     display : none;
 }
 
