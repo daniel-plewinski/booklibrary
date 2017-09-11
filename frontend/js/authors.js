@@ -17,8 +17,10 @@ $('#authorAdd').on('submit',function(e){
         dataType:"json"
     }).done(function(result){
         addAuthor(result.success[0]);
+        showModal('Autor został dodany');
     }).fail(function(xhr,cod){
         console.log(xhr,cod);
+        showModal('Wystąpił błąd podczas dodawania autora');
     })
 });
 
@@ -32,6 +34,7 @@ function addAuthor(author){
                                 </button>
                                  <button data-id="${author.id}" class="btn btn-primary pull-right btn-xs btn-author-books"><i class="fa fa-book"></i></button>
                             </div>
+                             <ul class="authorBooksList"></ul>
                         </div>
                     </li>`;
     //adding to the DOM tree
@@ -39,6 +42,28 @@ function addAuthor(author){
     var select = `<option value="${author.id}"> -- ${author.name} ${author.surname} --</option>`;
     $('#authorEditSelect').append(select);
 }
+
+// Author booklist
+$(document).on('click','.btn-author-books',function(){
+
+    var authorID = $(this).data('id');
+    var parent = $(this).parent().parent();
+
+    // because of toggle element must be emptied before next toggle to avoid showing many times
+    parent.find('.authorBooksList').empty();
+
+    $.ajax({
+        url:`${API_HOST}/author/`+authorID,
+        method:'GET',
+        dataType:'json'
+    }).done(function(result){
+        parent.find('.authorBooksList').toggle();
+        for (var i=0; i<result.success[0].books.length; i++) {
+            parent.find('.authorBooksList').append('<li>' + `${result.success[0].books[i].title}`+'</li>');
+        }
+    });
+
+});
 
 
 // editing an author
@@ -55,6 +80,7 @@ $('#authorEditSelect').on('change', function(e) {
         name.val(result.success[0].name);
         surname.val(result.success[0].surname);
         authorEdit(`${authorID}`);
+        showModal('Autor został zmieniony');
     });
 });
 
@@ -106,5 +132,6 @@ $(document).on('click','.btn-book-remove',function(){
     }).done(function(result) {
         // remove from the DOM tree
         row.parent().parent().parent().remove();
+        showModal('Autor został usunięty');
     });
 });
